@@ -1,1 +1,30 @@
-<h1>Hello {{Firstname}}, {{Lastname}} </h1>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<h2 style="display: flex; justify-content: center;">Lake in ontario</h2>
+  <div class="container">
+    @for (lake of lakeList; track lake.name){
+      <div class="card">
+        <h3 class="name">{{lake.name}}</h3>
+        <p>Water Temp: {{lake.waterTemperature}}</p>
+        <p>Wave Heigh: {{lake.waveHeight}}</p>
+        <p>Wind Speed: {{lake.windSpeed}}</p>
+        <p>Water Quality: <b>{{lake.waterQuality <= 300 ? 'safe to swim' : lake.waterQuality >= 500 ? 'do not go swimming!': 'okay' }}</b></p>
+
+
+      </div>
+
+    } @empty {
+      <p>no lakes were found</p>
+    }
+
+  </div>
+</body>
+</html>

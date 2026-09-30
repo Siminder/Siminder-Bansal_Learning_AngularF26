@@ -1,1 +1,8 @@
-<p>content-list works!</p>
+
+<div id="Dot-Matrix-value">
+@for (lake of lakeList; track lake.name) {
+  <app-content-list-item [lake]="lake"></app-content-list-item>
+} @empty {
+  <p>No lakes were found.</p>
+}
+</div>

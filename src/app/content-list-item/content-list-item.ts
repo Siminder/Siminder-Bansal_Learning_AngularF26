@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import {Lake} from '../shared/models/lake';
 
 @Component({
   imports: [],
@@ -6,4 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './content-list-item.css',
   templateUrl: './content-list-item.html',
 })
-export class ContentListItem {}
+export class ContentListItem {
+
+  lake = input.required<Lake>()
+
+
+}

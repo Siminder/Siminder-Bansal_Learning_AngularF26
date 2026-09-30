@@ -1,0 +1,17 @@
+:host {
+  display: block;
+  border: 2px solid black;
+  margin: 10px;
+}
+
+:host(.even) {
+  background-color: lightblue;
+}
+
+:host(.odd) {
+  background-color: lightgray;
+}
+
+.card {
+  padding: 20px;
+}

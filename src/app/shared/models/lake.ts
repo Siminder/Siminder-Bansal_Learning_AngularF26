@@ -1,5 +1,5 @@
 export interface Lake {
-    name: String;
+    name: string;
     waterTemperature: number;
     waveHeight: number | null;
     windSpeed: number;

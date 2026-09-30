@@ -1,5 +1,12 @@
-import { Component, input } from '@angular/core';
+import {Component, input, output} from '@angular/core';
 import {Lake} from '../shared/models/lake';
+
+
+
+interface ContentAction {
+  id: string;
+  action: string;
+}
 
 @Component({
   imports: [],
@@ -12,4 +19,5 @@ export class ContentListItem {
   lake = input.required<Lake>()
 
 
+  action = output<ContentAction>();
 }

@@ -1,8 +1,28 @@
+@for (
+  lake of lakeList;
+  track lake.name;
+  let even = $even;
+  let odd = $odd;
+  let count = $count;
+  let first = $first;
+  let last = $last
+  ) {
 
-<div id="Dot-Matrix-value">
-@for (lake of lakeList; track lake.name) {
-  <app-content-list-item [lake]="lake"></app-content-list-item>
+  @if (first) {
+    <p>Total lakes: {{ count }}</p>
+  }
+
+  <app-content-list-item
+    [lake]="lake"
+    [class.even]="even"
+    [class.odd]="odd"
+    (action)="handleAction($event)">
+  </app-content-list-item>
+
+  @if (last) {
+    <p>End of lake list.</p>
+  }
+
 } @empty {
   <p>No lakes were found.</p>
 }
-</div>

@@ -28,7 +28,9 @@
     }
   </p>
 
-  <footer>
-    September 29, 2026
-  </footer>
+
+
+  <button (click)="action.emit({ id: lake().name, action: 'opened' })">
+    Open
+  </button>
 </div>

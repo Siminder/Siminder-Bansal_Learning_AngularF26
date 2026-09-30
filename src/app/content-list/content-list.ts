@@ -54,5 +54,9 @@ export class ContentList {
       windSpeed: 13,
       waterQuality: 600 },
 
-  ]
+  ];
+
+  handleAction(event: { id: string; action: string }) {
+    console.log(event);
+  }
 }

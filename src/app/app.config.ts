@@ -1,10 +1,9 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { routes } from './app.routes';
+import { InjectionToken } from '@angular/core';
 
-export const appConfig: ApplicationConfig = {
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideRouter(routes)
-  ]
-};
+export interface AppConfig {
+  apiBaseUrl: string;
+  defaultCategory: string;
+}
+
+
+export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');

@@ -1,5 +1,7 @@
-import { Injectable, signal, computed, effect } from '@angular/core';
+import {signal, computed, effect } from '@angular/core';
 import { Lake } from '../shared/models/lake';
+import { inject, Injectable } from '@angular/core';
+import { APP_CONFIG, FEATURE_FLAGS } from '../shared/app-config';
 
 @Injectable({
   providedIn: 'root',
@@ -62,4 +64,17 @@ export class LakeService {
   removeLake(name: string) {
     this.lakeData.update((list) => list.filter((lake) => lake.name !== name));
   }
+
+  private config = inject(APP_CONFIG);
+
+  private flags = inject(FEATURE_FLAGS, {
+    optional: true,
+  });
+
+  apiBaseUrl = this.config.apiBaseUrl;
+
+  featureFlags = this.flags ?? {
+    showWindSpeed: false,
+    showWaveHeight: false,
+  };
 }

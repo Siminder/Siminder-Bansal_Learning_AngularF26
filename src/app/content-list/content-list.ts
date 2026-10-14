@@ -19,4 +19,5 @@ export class ContentList {
   removeLake(name: string) {
     this.lakeService.removeLake(name);
   }
+  apiBaseUrl = this.lakeService.apiBaseUrl;
 }

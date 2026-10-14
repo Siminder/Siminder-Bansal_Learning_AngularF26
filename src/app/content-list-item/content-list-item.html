@@ -1,3 +1,4 @@
+
 <div class="container">
   <header>
     <h3>{{ lake().name }}</h3>
@@ -30,7 +31,7 @@
 
 
 
-  <button (click)="action.emit({ id: lake().name, action: 'opened' })">
-    Open
+  <button (click)="removeLake()">
+    Remove lake
   </button>
 </div>

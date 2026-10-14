@@ -1,23 +1,18 @@
-import {Component, input, output} from '@angular/core';
-import {Lake} from '../shared/models/lake';
-
-
-
-interface ContentAction {
-  id: string;
-  action: string;
-}
+import { Component, input, output } from '@angular/core';
+import { Lake } from '../shared/models/lake';
 
 @Component({
-  imports: [],
   selector: 'app-content-list-item',
-  styleUrl: './content-list-item.css',
+  standalone: true,
   templateUrl: './content-list-item.html',
+  styleUrl: './content-list-item.css',
 })
 export class ContentListItem {
+  lake = input.required<Lake>();
 
-  lake = input.required<Lake>()
+  remove = output<string>();
 
-
-  action = output<ContentAction>();
+  removeLake(): void {
+    this.remove.emit(this.lake().name);
+  }
 }

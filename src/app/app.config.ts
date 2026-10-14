@@ -19,6 +19,8 @@ export const appConfig: ApplicationConfig = {
         defaultCategory: 'all',
       }),
     },
+    // To switch back to the real LakeService, remove this provider.
+    // Angular will then use the real service registered with providedIn: 'root'.
     {
       provide: LakeService,
       useClass: MockLakeService,

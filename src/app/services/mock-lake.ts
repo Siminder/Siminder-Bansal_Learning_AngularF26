@@ -1,16 +1,16 @@
 import { Injectable, signal, computed, effect, inject } from '@angular/core';
 import { Lake } from '../shared/models/lake';
-import { APP_CONFIG, FEATURE_FLAGS } from '../shared/app-config';
+import { APP_CONFIG, } from '../shared/app-config';
 
 @Injectable()
 export class MockLakeService {
   private config = inject(APP_CONFIG);
 
-
   apiBaseUrl = this.config.apiBaseUrl;
 
   private lakeData = signal<Lake[]>([
     {
+      id: 1,
       name: 'Mock Lake Alpha',
       waterTemperature: 25,
       waveHeight: 0.2,
@@ -18,6 +18,7 @@ export class MockLakeService {
       waterQuality: 100,
     },
     {
+      id: 2,
       name: 'Mock Lake Beta',
       waterTemperature: 10,
       waveHeight: 1.5,

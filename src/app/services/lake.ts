@@ -10,13 +10,7 @@ export class LakeService {
   // Private signal holding the lake data
   private lakeData = signal<Lake[]>([
     {
-      name: 'Lake Ontario',
-      waterTemperature: 18,
-      waveHeight: 0.5,
-      windSpeed: 15,
-      waterQuality: 250,
-    },
-    {
+      id: 2,
       name: 'Lake Huron',
       waterTemperature: 16,
       waveHeight: 0.8,
@@ -24,6 +18,7 @@ export class LakeService {
       waterQuality: 500,
     },
     {
+      id: 3,
       name: 'Lake Erie',
       waterTemperature: 20,
       waveHeight: 0.3,
@@ -31,6 +26,15 @@ export class LakeService {
       waterQuality: 500,
     },
     {
+      id: 2,
+      name: 'Lake Ontario',
+      waterTemperature: 18,
+      waveHeight: 0.5,
+      windSpeed: 15,
+      waterQuality: 250,
+    },
+    {
+      id: 3,
       name: 'Lake Simcoe',
       waterTemperature: 17,
       waveHeight: null,
@@ -67,8 +71,5 @@ export class LakeService {
 
   private config = inject(APP_CONFIG);
 
-
-
   apiBaseUrl = this.config.apiBaseUrl;
-
 }

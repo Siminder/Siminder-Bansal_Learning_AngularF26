@@ -5,7 +5,9 @@
   <p>wave_height:{{lake.waveHeight}}</p>
   <p>Wind{{lake.windSpeed}}</p>
   <p>Water_Quality{{lake.waterQuality}}</p>
+  <a [routerLink]="['/lakes/edit', lake.id]">Edit this lake</a>
 
 } @else {
   <p>Lake not found</p>
 }
+<p><a routerLink="/lakes">Back to all lakes</a></p>

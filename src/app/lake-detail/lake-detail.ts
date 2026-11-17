@@ -1,9 +1,10 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { Lake } from '../shared/models/lake';
 import { LakeService } from '../services/lake';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-lake-detail',
   styleUrl: './lake-detail.css',
   templateUrl: './lake-detail.html',

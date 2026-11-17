@@ -64,6 +64,16 @@ export class LakeService {
     this.lakeData.update((list) => [...list, newLake]);
   }
 
+  // Find one lake by its id
+  getLakeById(id: number): Lake | undefined {
+    return this.lakes().find((lake) => lake.id === id);
+  }
+
+  // Replace the lake with the same id (no duplicate is created)
+  updateLake(updated: Lake): void {
+    this.lakeData.update((list) => list.map((lake) => (lake.id === updated.id ? updated : lake)));
+  }
+
   // Next free id: one more than the highest id in the list
   nextId(): number {
     return Math.max(0, ...this.lakes().map((lake) => lake.id)) + 1;

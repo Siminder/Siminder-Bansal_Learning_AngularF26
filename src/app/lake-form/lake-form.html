@@ -1,5 +1,8 @@
-<h2>Add a Lake</h2>
+<h2>{{ isEditMode() ? 'Edit Lake' : 'Add a Lake' }}</h2>
 
+@if (lakeNotFound()) {
+  <p class="error center">No lake with id {{ id() }} exists. <a routerLink="/lakes">Back to the list</a></p>
+} @else {
 <form [formGroup]="lakeForm" (ngSubmit)="onSubmit()" class="lake-form">
   <label>
     Name
@@ -59,9 +62,16 @@
     }
   }
 
-  <button type="submit" [disabled]="lakeForm.invalid">Add Lake</button>
+  <button type="submit" [disabled]="lakeForm.invalid">
+    {{ isEditMode() ? 'Save Changes' : 'Add Lake' }}
+  </button>
+
+  @if (isEditMode()) {
+    <a [routerLink]="['/lakes', id()]">Cancel</a>
+  }
 
   @if (savedMessage()) {
     <p class="success">{{ savedMessage() }}</p>
   }
 </form>
+}

@@ -11,6 +11,8 @@
   @if (c.name.touched) {
     @if (c.name.hasError('required')) {
       <p class="error">Name is required.</p>
+    } @else if (c.name.hasError('whitespace')) {
+      <p class="error">Name can't be only spaces.</p>
     } @else if (c.name.hasError('minlength')) {
       <p class="error">Name must be at least 3 characters.</p>
     }
@@ -60,6 +62,14 @@
     } @else if (c.waterQuality.hasError('min')) {
       <p class="error">Water quality can't be negative.</p>
     }
+  }
+
+  <!-- Form-level error: it belongs to the group, not to a single field -->
+  @if (lakeForm.hasError('waveTooHighForWind') && (c.waveHeight.touched || c.windSpeed.touched)) {
+    <p class="error form-error">
+      Wave height can't be more than {{ lakeForm.getError('waveTooHighForWind').maxWaveHeight }} m
+      at a wind speed of {{ c.windSpeed.value }} km/h (max is wind speed ÷ 10).
+    </p>
   }
 
   <button type="submit" [disabled]="lakeForm.invalid">

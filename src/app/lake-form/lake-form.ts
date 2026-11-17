@@ -2,6 +2,7 @@ import { Component, computed, effect, inject, input, signal, untracked } from '@
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { LakeService } from '../services/lake';
+import { noWhitespaceValidator, waveHeightVsWindValidator } from './lake-validators';
 
 @Component({
   imports: [ReactiveFormsModule, RouterLink],
@@ -24,12 +25,14 @@ export class LakeForm {
   savedMessage = signal('');
 
   lakeForm = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(3)]],
+    name: ['', [Validators.required, noWhitespaceValidator, Validators.minLength(3)]],
     waterTemperature: [15, [Validators.required, Validators.min(0), Validators.max(40)]],
     windSpeed: [10, [Validators.required, Validators.min(0)]],
     waveHeight: [0 as number | null, [Validators.min(0)]],
     waterQuality: [100, [Validators.required, Validators.min(0)]],
-  });
+  },
+  // Group-level validator: it compares two fields, so it belongs to the whole form
+  { validators: waveHeightVsWindValidator });
 
   constructor() {
     // Runs when the id input arrives (or changes), and pre-fills the form in edit mode.

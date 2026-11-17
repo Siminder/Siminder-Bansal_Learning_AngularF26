@@ -1,10 +1,10 @@
 <p>Lake id: {{ id() }}</p>
 @if (lake(); as lake){
-  <p>{{lake.name}}</p>
-  <p>{{lake.waterTemperature}}</p>
-  <p>{{lake.waveHeight}}</p>
-  <p>{{lake.windSpeed}}</p>
-  <p>{{lake.waterQuality}}</p>
+  <p>name: {{lake.name}}</p>
+  <p>temp: {{lake.waterTemperature}}</p>
+  <p>wave_height:{{lake.waveHeight}}</p>
+  <p>Wind{{lake.windSpeed}}</p>
+  <p>Water_Quality{{lake.waterQuality}}</p>
 
 } @else {
   <p>Lake not found</p>

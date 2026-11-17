@@ -10,7 +10,7 @@ export class LakeService {
   // Private signal holding the lake data
   private lakeData = signal<Lake[]>([
     {
-      id: 2,
+      id: 1,
       name: 'Lake Huron',
       waterTemperature: 16,
       waveHeight: 0.8,
@@ -18,7 +18,7 @@ export class LakeService {
       waterQuality: 500,
     },
     {
-      id: 3,
+      id: 2,
       name: 'Lake Erie',
       waterTemperature: 20,
       waveHeight: 0.3,
@@ -26,7 +26,7 @@ export class LakeService {
       waterQuality: 500,
     },
     {
-      id: 2,
+      id: 3,
       name: 'Lake Ontario',
       waterTemperature: 18,
       waveHeight: 0.5,
@@ -34,7 +34,7 @@ export class LakeService {
       waterQuality: 250,
     },
     {
-      id: 3,
+      id: 4,
       name: 'Lake Simcoe',
       waterTemperature: 17,
       waveHeight: null,
@@ -62,6 +62,11 @@ export class LakeService {
   // Add a lake immutably
   addLake(newLake: Lake) {
     this.lakeData.update((list) => [...list, newLake]);
+  }
+
+  // Next free id: one more than the highest id in the list
+  nextId(): number {
+    return Math.max(0, ...this.lakes().map((lake) => lake.id)) + 1;
   }
 
   // Remove a lake immutably

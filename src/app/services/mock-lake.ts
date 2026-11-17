@@ -43,6 +43,10 @@ export class MockLakeService {
     this.lakeData.update((list) => [...list, newLake]);
   }
 
+  nextId(): number {
+    return Math.max(0, ...this.lakes().map((lake) => lake.id)) + 1;
+  }
+
   removeLake(name: string): void {
     this.lakeData.update((list) => list.filter((lake) => lake.name !== name));
   }

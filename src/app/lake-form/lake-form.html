@@ -1,0 +1,67 @@
+<h2>Add a Lake</h2>
+
+<form [formGroup]="lakeForm" (ngSubmit)="onSubmit()" class="lake-form">
+  <label>
+    Name
+    <input type="text" formControlName="name" />
+  </label>
+  @if (c.name.touched) {
+    @if (c.name.hasError('required')) {
+      <p class="error">Name is required.</p>
+    } @else if (c.name.hasError('minlength')) {
+      <p class="error">Name must be at least 3 characters.</p>
+    }
+  }
+
+  <label>
+    Water temperature (°C)
+    <input type="number" formControlName="waterTemperature" />
+  </label>
+  @if (c.waterTemperature.touched) {
+    @if (c.waterTemperature.hasError('required')) {
+      <p class="error">Water temperature is required.</p>
+    } @else if (c.waterTemperature.hasError('min')) {
+      <p class="error">Water temperature can't be below 0 °C.</p>
+    } @else if (c.waterTemperature.hasError('max')) {
+      <p class="error">Water temperature can't be above 40 °C.</p>
+    }
+  }
+
+  <label>
+    Wind speed (km/h)
+    <input type="number" formControlName="windSpeed" />
+  </label>
+  @if (c.windSpeed.touched) {
+    @if (c.windSpeed.hasError('required')) {
+      <p class="error">Wind speed is required.</p>
+    } @else if (c.windSpeed.hasError('min')) {
+      <p class="error">Wind speed can't be negative.</p>
+    }
+  }
+
+  <label>
+    Wave height (m), leave blank if not available
+    <input type="number" step="0.1" formControlName="waveHeight" />
+  </label>
+  @if (c.waveHeight.touched && c.waveHeight.hasError('min')) {
+    <p class="error">Wave height can't be negative.</p>
+  }
+
+  <label>
+    Water quality (bacteria count)
+    <input type="number" formControlName="waterQuality" />
+  </label>
+  @if (c.waterQuality.touched) {
+    @if (c.waterQuality.hasError('required')) {
+      <p class="error">Water quality is required.</p>
+    } @else if (c.waterQuality.hasError('min')) {
+      <p class="error">Water quality can't be negative.</p>
+    }
+  }
+
+  <button type="submit" [disabled]="lakeForm.invalid">Add Lake</button>
+
+  @if (savedMessage()) {
+    <p class="success">{{ savedMessage() }}</p>
+  }
+</form>

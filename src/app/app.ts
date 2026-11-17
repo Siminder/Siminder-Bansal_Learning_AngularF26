@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { EditLock } from './services/edit-lock';
 
 @Component({
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
@@ -7,4 +8,6 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   styleUrl: './app.css',
   templateUrl: './app.html',
 })
-export class App {}
+export class App {
+  editLock = inject(EditLock);
+}

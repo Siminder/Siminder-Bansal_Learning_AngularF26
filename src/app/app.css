@@ -61,3 +61,14 @@ p {
   font-weight: 700;
   text-decoration: underline;
 }
+
+.lock-toggle {
+  margin-left: auto;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.lock-state {
+  color: white;
+  font-size: 14px;
+}

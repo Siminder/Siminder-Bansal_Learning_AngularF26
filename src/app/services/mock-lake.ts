@@ -16,6 +16,7 @@ export class MockLakeService {
       waveHeight: 0.2,
       windSpeed: 5,
       waterQuality: 100,
+      activities: ['Swimming', 'Paddleboarding'],
     },
     {
       id: 2,
@@ -24,6 +25,7 @@ export class MockLakeService {
       waveHeight: 1.5,
       windSpeed: 30,
       waterQuality: 600,
+      activities: ['Fishing'],
     },
   ]);
 

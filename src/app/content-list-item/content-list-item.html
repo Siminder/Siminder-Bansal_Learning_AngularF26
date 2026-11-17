@@ -6,6 +6,9 @@
 
   <p>Water Temperature: {{ lake().waterTemperature }}</p>
   <p>Wind Speed: {{ lake().windSpeed }}</p>
+  @if (lake().activities?.length) {
+    <p>Activities: {{ lake().activities?.join(', ') }}</p>
+  }
 
   @if (lake().waveHeight !== null) {
     <p>Wave Height: {{ lake().waveHeight }}</p>

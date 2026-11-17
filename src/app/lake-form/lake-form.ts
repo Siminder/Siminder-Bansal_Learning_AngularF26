@@ -30,6 +30,8 @@ export class LakeForm {
     windSpeed: [10, [Validators.required, Validators.min(0)]],
     waveHeight: [0 as number | null, [Validators.min(0)]],
     waterQuality: [100, [Validators.required, Validators.min(0)]],
+    // Repeating field: one text control per activity, added/removed with buttons
+    activities: this.fb.array<string>([]),
   },
   // Group-level validator: it compares two fields, so it belongs to the whole form
   { validators: waveHeightVsWindValidator });
@@ -49,18 +51,39 @@ export class LakeForm {
     return this.lakeForm.controls;
   }
 
+  get activities() {
+    return this.lakeForm.controls.activities;
+  }
+
+  addActivity(value = ''): void {
+    this.activities.push(this.fb.control(value, [Validators.required, noWhitespaceValidator]));
+  }
+
+  removeActivity(index: number): void {
+    this.activities.removeAt(index);
+  }
+
+  // reset() keeps FormArray rows, so clear them too to get a truly empty form
+  private resetForm(): void {
+    this.lakeForm.reset();
+    this.activities.clear();
+  }
+
   private loadLake(id: string | undefined): void {
     this.savedMessage.set('');
 
     if (!id) {
       this.lakeNotFound.set(false);
-      this.lakeForm.reset();
+      this.resetForm();
       return;
     }
 
     const lake = this.lakeService.getLakeById(Number(id));
     this.lakeNotFound.set(!lake);
     if (lake) {
+      // patchValue can't add FormArray rows, so build one row per activity first
+      this.activities.clear();
+      lake.activities?.forEach((activity) => this.addActivity(activity));
       this.lakeForm.patchValue(lake);
     }
   }
@@ -71,8 +94,9 @@ export class LakeForm {
       return;
     }
 
-    const value = this.lakeForm.getRawValue();
-    const name = value.name.trim();
+    const raw = this.lakeForm.getRawValue();
+    const name = raw.name.trim();
+    const value = { ...raw, activities: raw.activities.map((activity) => activity.trim()) };
     const id = this.id();
 
     if (id) {
@@ -85,6 +109,6 @@ export class LakeForm {
     // Add mode: new lake with the next free id, then clear the form for the next one
     this.lakeService.addLake({ ...value, name, id: this.lakeService.nextId() });
     this.savedMessage.set(`${name} was added.`);
-    this.lakeForm.reset();
+    this.resetForm();
   }
 }

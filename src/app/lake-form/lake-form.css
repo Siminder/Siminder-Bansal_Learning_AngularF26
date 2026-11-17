@@ -51,3 +51,32 @@ h2 {
   border: 1px solid #b00020;
   border-radius: 4px;
 }
+
+.activities {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  padding: 8px 12px;
+}
+
+.activities legend {
+  font-weight: 600;
+}
+
+.activity-row {
+  display: flex;
+  gap: 6px;
+}
+
+.activity-row input {
+  flex: 1;
+  min-width: 0;
+}
+
+.hint {
+  margin: 0;
+  color: #555;
+  font-size: 14px;
+}

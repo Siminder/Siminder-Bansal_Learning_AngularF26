@@ -16,6 +16,7 @@ export class LakeService {
       waveHeight: 0.8,
       windSpeed: 20,
       waterQuality: 500,
+      activities: ['Swimming', 'Sailing'],
     },
     {
       id: 2,
@@ -24,6 +25,7 @@ export class LakeService {
       waveHeight: 0.3,
       windSpeed: 10,
       waterQuality: 500,
+      activities: ['Fishing'],
     },
     {
       id: 3,
@@ -32,6 +34,7 @@ export class LakeService {
       waveHeight: 0.5,
       windSpeed: 15,
       waterQuality: 250,
+      activities: ['Kayaking', 'Fishing'],
     },
     {
       id: 4,
@@ -40,6 +43,7 @@ export class LakeService {
       waveHeight: null,
       windSpeed: 12,
       waterQuality: 320,
+      activities: ['Ice fishing'],
     },
   ]);
 

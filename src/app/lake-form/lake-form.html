@@ -64,6 +64,29 @@
     }
   }
 
+  <fieldset formArrayName="activities" class="activities">
+    <legend>Activities</legend>
+
+    @for (activity of activities.controls; track activity; let i = $index) {
+      <div class="activity-row">
+        <input type="text" [formControlName]="i" [attr.aria-label]="'Activity ' + (i + 1)"
+               placeholder="e.g. Swimming" />
+        <button type="button" (click)="removeActivity(i)">Remove</button>
+      </div>
+      @if (activity.touched) {
+        @if (activity.hasError('required')) {
+          <p class="error">Enter an activity or remove this row.</p>
+        } @else if (activity.hasError('whitespace')) {
+          <p class="error">Activity can't be only spaces.</p>
+        }
+      }
+    } @empty {
+      <p class="hint">No activities yet.</p>
+    }
+
+    <button type="button" (click)="addActivity()">+ Add activity</button>
+  </fieldset>
+
   <!-- Form-level error: it belongs to the group, not to a single field -->
   @if (lakeForm.hasError('waveTooHighForWind') && (c.waveHeight.touched || c.windSpeed.touched)) {
     <p class="error form-error">

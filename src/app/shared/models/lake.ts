@@ -5,4 +5,5 @@ export interface Lake {
     waveHeight: number | null;
     windSpeed: number;
     waterQuality: number;
+    activities?: string[]; // e.g. swimming, fishing, kayaking
 }

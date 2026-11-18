@@ -11,13 +11,11 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withComponentInputBinding()),
     {
       provide: APP_CONFIG,
-      useFactory: () => ({
-        apiBaseUrl:
-          location.hostname === 'localhost'
-            ? 'https://localhost-placeholder.example.com/api'
-            : 'https://placeholder.example.com/api',
+      useValue: {
+        apiBaseUrl: 'https://api.open-meteo.com/v1',
+        marineApiBaseUrl: 'https://marine-api.open-meteo.com/v1',
         defaultCategory: 'all',
-      }),
+      },
     },
     // To switch back to the real LakeService, remove this provider.
     // Angular will then use the real service registered with providedIn: 'root'.

@@ -1,3 +1,10 @@
+@if (errors.message(); as message) {
+  <div class="error-banner" role="alert">
+    <span>{{ message }}</span>
+    <button type="button" (click)="errors.clear()">Dismiss</button>
+  </div>
+}
+
 <nav class="navbar">
   <a routerLink="/lakes" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Lakes</a>
   <a routerLink="/lakes/add" routerLinkActive="active">Add Lake</a>

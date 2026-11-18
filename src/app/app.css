@@ -95,3 +95,18 @@ p {
     transform: rotate(360deg);
   }
 }
+
+.error-banner {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background-color: #b00020;
+  color: white;
+}
+
+.error-banner button {
+  flex-shrink: 0;
+  cursor: pointer;
+}

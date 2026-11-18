@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { EditLock } from './services/edit-lock';
 import { LoadingService } from './services/loading';
+import { ErrorService } from './services/error';
 
 @Component({
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
@@ -12,4 +13,5 @@ import { LoadingService } from './services/loading';
 export class App {
   editLock = inject(EditLock);
   loading = inject(LoadingService);
+  errors = inject(ErrorService);
 }

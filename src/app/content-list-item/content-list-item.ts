@@ -15,6 +15,6 @@ export class ContentListItem {
   remove = output<string>();
 
   removeLake(): void {
-    this.remove.emit(this.lake().name);
+    this.remove.emit(this.lake().id);
   }
 }

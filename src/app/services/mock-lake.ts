@@ -1,6 +1,7 @@
 import { Injectable, signal, computed, effect, inject } from '@angular/core';
 import { Lake } from '../shared/models/lake';
-import { APP_CONFIG, } from '../shared/app-config';
+import { APP_CONFIG } from '../shared/app-config';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class MockLakeService {
@@ -31,6 +32,16 @@ export class MockLakeService {
 
   lakes = this.lakeData.asReadonly();
 
+  // Same shape as LakeService, so it can still be swapped in from app.config.ts
+  isLoading = signal(false);
+  error = signal<string | null>(null);
+
+  load(): void {}
+
+  whenLoaded(): Observable<void> {
+    return of(undefined);
+  }
+
   safeLakes = computed(() => this.lakes().filter((lake) => lake.waterQuality <= 300));
 
   safeLakeCount = computed(() => this.safeLakes().length);
@@ -59,7 +70,7 @@ export class MockLakeService {
     return crypto.randomUUID();
   }
 
-  removeLake(name: string): void {
-    this.lakeData.update((list) => list.filter((lake) => lake.name !== name));
+  removeLake(id: string): void {
+    this.lakeData.update((list) => list.filter((lake) => lake.id !== id));
   }
 }

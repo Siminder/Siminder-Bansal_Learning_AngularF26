@@ -1,14 +1,15 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
-import { routes} from './app.routes';
+import { routes } from './app.routes';
 import { APP_CONFIG } from './shared/app-config';
-import { LakeService } from './services/lake';
-import { MockLakeService } from './services/mock-lake';
+import { cacheInterceptor } from './interceptors/cache-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes, withComponentInputBinding()),
+    provideHttpClient(withInterceptors([cacheInterceptor])),
     {
       provide: APP_CONFIG,
       useValue: {
@@ -17,11 +18,8 @@ export const appConfig: ApplicationConfig = {
         defaultCategory: 'all',
       },
     },
-    // To switch back to the real LakeService, remove this provider.
-    // Angular will then use the real service registered with providedIn: 'root'.
-    {
-      provide: LakeService,
-      useClass: MockLakeService,
-    },
+    // LakeService (providedIn: 'root') now loads live data from Open-Meteo.
+    // To use the hard-coded mock data instead, add this provider back:
+    // { provide: LakeService, useClass: MockLakeService },
   ],
 };

@@ -1,7 +1,18 @@
 <p>Data source: {{ apiBaseUrl }}</p>
+
+@if (isLoading()) {
+  <p class="status">Loading live lake conditions…</p>
+}
+
+@if (error(); as message) {
+  <div class="status error">
+    <p>{{ message }}</p>
+    <button type="button" (click)="retry()">Try again</button>
+  </div>
+}
 @for (
   lake of lakes();
-  track lake.name;
+  track lake.id;
   let even = $even;
   let odd = $odd;
   let count = $count;
@@ -23,5 +34,7 @@
     <p>End of lake list.</p>
   }
 } @empty {
-  <p>No lakes were found.</p>
+  @if (!isLoading() && !error()) {
+    <p>No lakes were found.</p>
+  }
 }

@@ -1,7 +1,6 @@
-import { Component, computed, inject, input } from '@angular/core';
-import { Lake } from '../shared/models/lake';
-import { LakeService } from '../services/lake';
+import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Lake } from '../shared/models/lake';
 
 @Component({
   imports: [RouterLink],
@@ -10,7 +9,8 @@ import { RouterLink } from '@angular/router';
   templateUrl: './lake-detail.html',
 })
 export class LakeDetail {
+  // Both arrive through withComponentInputBinding():
+  // id from the :id route param, lake from lakeResolver (null if no such lake)
   id = input.required<string>();
-  private lakeServices = inject(LakeService);
-  lake = computed(() => this.lakeServices.lakes().find((lake) => lake.id === this.id()));
+  lake = input<Lake | null>(null);
 }

@@ -16,8 +16,15 @@ export class ContentList {
   safeLakes = this.lakeService.safeLakes;
   safeLakeCount = this.lakeService.safeLakeCount;
 
-  removeLake(name: string) {
-    this.lakeService.removeLake(name);
+  isLoading = this.lakeService.isLoading;
+  error = this.lakeService.error;
+
+  removeLake(id: string) {
+    this.lakeService.removeLake(id);
+  }
+
+  retry() {
+    this.lakeService.load();
   }
   apiBaseUrl = this.lakeService.apiBaseUrl;
 }

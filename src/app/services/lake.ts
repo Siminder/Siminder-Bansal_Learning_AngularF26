@@ -145,6 +145,11 @@ export class LakeService {
     this.changes.update((list) => [...list, { type: 'delete', id }]);
   }
 
+  // Throw away every local add/edit/delete and show the API data as-is
+  resetLocalChanges(): void {
+    this.changes.set([]);
+  }
+
   // Random UUID for lakes added in the app, so they can never clash with API ids
   newId(): string {
     return crypto.randomUUID();

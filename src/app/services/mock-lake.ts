@@ -38,6 +38,8 @@ export class MockLakeService {
 
   load(): void {}
 
+  resetLocalChanges(): void {}
+
   whenLoaded(): Observable<void> {
     return of(undefined);
   }

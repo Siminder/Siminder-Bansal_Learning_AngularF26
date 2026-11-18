@@ -1,4 +1,9 @@
 <p>Data source: {{ apiBaseUrl }}</p>
+<p class="local-note">
+  Changes are saved on this device only. Adding, editing and deleting lakes never changes
+  Open-Meteo's data.
+  <button type="button" (click)="resetLocalChanges()">Reset local changes</button>
+</p>
 
 @if (isLoading()) {
   <p class="status">Loading live lake conditions…</p>

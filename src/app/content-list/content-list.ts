@@ -23,6 +23,10 @@ export class ContentList {
     this.lakeService.removeLake(id);
   }
 
+  resetLocalChanges() {
+    this.lakeService.resetLocalChanges();
+  }
+
   retry() {
     this.lakeService.load();
   }

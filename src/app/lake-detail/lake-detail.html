@@ -1,14 +1,14 @@
 <p>Lake id: {{ id() }}</p>
 @if (lake(); as lake) {
   <h3>{{ lake.name | titlecase }}</h3>
-  <p>Air temperature: {{ lake.airTemperature | number:'1.0-1' }} °C</p>
-  <p>Wind speed: {{ lake.windSpeed | number:'1.0-1' }} km/h</p>
+  <p>Air temperature: {{ lake.airTemperature | number:'1.0-1' }} </p>
+  <p>Wind speed: {{ lake.windSpeed | number:'1.0-1' }} km/h ({{ lake.windSpeed | speed:'knots' }})</p>
   @if (lake.waveHeight !== null) {
     <p>Wave height: {{ lake.waveHeight | number:'1.1-2' }} m</p>
   } @else {
     <p>Wave height: Not available</p>
   }
-  <p>Water quality: {{ lake.waterQuality | number }}</p>
+  <p>Water quality: {{ lake.waterQuality | number }} ({{ lake.waterQuality | waterQualityLabel }})</p>
   <p>Activities: {{ lake.activities?.length ? lake.activities?.join(', ') : 'None listed' }}</p>
   <a [routerLink]="['/lakes/edit', lake.id]">Edit this lake</a>
 } @else {

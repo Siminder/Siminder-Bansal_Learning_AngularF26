@@ -1,17 +1,17 @@
 
 <div class="container">
   <header>
-    <h3>{{ lake().name }}</h3>
+    <h3>{{ lake().name | titlecase }}</h3>
   </header>
 
-  <p>Air Temperature: {{ lake().airTemperature }} °C</p>
-  <p>Wind Speed: {{ lake().windSpeed }}</p>
+  <p>Air Temperature: {{ lake().airTemperature | number:'1.0-1' }} °C</p>
+  <p>Wind Speed: {{ lake().windSpeed | number:'1.0-1' }} km/h</p>
   @if (lake().activities?.length) {
-    <p>Activities: {{ lake().activities?.join(', ') }}</p>
+    <p>Activities: {{ (lake().activities | slice:0:2)?.join(', ') }}</p>
   }
 
   @if (lake().waveHeight !== null) {
-    <p>Wave Height: {{ lake().waveHeight }}</p>
+    <p>Wave Height: {{ lake().waveHeight | number:'1.1-2' }} m</p>
   } @else {
     <p>Wave Height: Not available</p>
   }

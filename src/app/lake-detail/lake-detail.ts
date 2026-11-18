@@ -1,9 +1,9 @@
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Lake } from '../shared/models/lake';
-
+import { DecimalPipe, TitleCasePipe } from '@angular/common';
 @Component({
-  imports: [RouterLink],
+    imports: [RouterLink, DecimalPipe, TitleCasePipe],
   selector: 'app-lake-detail',
   styleUrl: './lake-detail.css',
   templateUrl: './lake-detail.html',

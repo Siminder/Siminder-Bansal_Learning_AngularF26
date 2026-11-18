@@ -10,18 +10,18 @@ export class MockLakeService {
 
   private lakeData = signal<Lake[]>([
     {
-      id: 1,
+      id: 'mock-alpha',
       name: 'Mock Lake Alpha',
-      waterTemperature: 25,
+      airTemperature: 25,
       waveHeight: 0.2,
       windSpeed: 5,
       waterQuality: 100,
       activities: ['Swimming', 'Paddleboarding'],
     },
     {
-      id: 2,
+      id: 'mock-beta',
       name: 'Mock Lake Beta',
-      waterTemperature: 10,
+      airTemperature: 10,
       waveHeight: 1.5,
       windSpeed: 30,
       waterQuality: 600,
@@ -46,7 +46,7 @@ export class MockLakeService {
   }
 
   // Find one lake by its id
-  getLakeById(id: number): Lake | undefined {
+  getLakeById(id: string): Lake | undefined {
     return this.lakes().find((lake) => lake.id === id);
   }
 
@@ -55,8 +55,8 @@ export class MockLakeService {
     this.lakeData.update((list) => list.map((lake) => (lake.id === updated.id ? updated : lake)));
   }
 
-  nextId(): number {
-    return Math.max(0, ...this.lakes().map((lake) => lake.id)) + 1;
+  newId(): string {
+    return crypto.randomUUID();
   }
 
   removeLake(name: string): void {

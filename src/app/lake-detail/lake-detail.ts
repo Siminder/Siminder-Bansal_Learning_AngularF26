@@ -12,5 +12,5 @@ import { RouterLink } from '@angular/router';
 export class LakeDetail {
   id = input.required<string>();
   private lakeServices = inject(LakeService);
-  lake = computed(() => this.lakeServices.lakes().find((lake) => lake.id === Number(this.id())));
+  lake = computed(() => this.lakeServices.lakes().find((lake) => lake.id === this.id()));
 }

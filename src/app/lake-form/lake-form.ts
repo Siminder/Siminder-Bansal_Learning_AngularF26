@@ -26,7 +26,7 @@ export class LakeForm {
 
   lakeForm = this.fb.group({
     name: ['', [Validators.required, noWhitespaceValidator, Validators.minLength(3)]],
-    waterTemperature: [15, [Validators.required, Validators.min(0), Validators.max(40)]],
+    airTemperature: [15, [Validators.required, Validators.min(-50), Validators.max(50)]],
     windSpeed: [10, [Validators.required, Validators.min(0)]],
     waveHeight: [0 as number | null, [Validators.min(0)]],
     waterQuality: [100, [Validators.required, Validators.min(0)]],
@@ -78,7 +78,7 @@ export class LakeForm {
       return;
     }
 
-    const lake = this.lakeService.getLakeById(Number(id));
+    const lake = this.lakeService.getLakeById(id);
     this.lakeNotFound.set(!lake);
     if (lake) {
       // patchValue can't add FormArray rows, so build one row per activity first
@@ -101,13 +101,13 @@ export class LakeForm {
 
     if (id) {
       // Edit mode: replace the existing lake (same id), then go back to its detail page
-      this.lakeService.updateLake({ ...value, name, id: Number(id) });
+      this.lakeService.updateLake({ ...value, name, id });
       this.router.navigate(['/lakes', id]);
       return;
     }
 
     // Add mode: new lake with the next free id, then clear the form for the next one
-    this.lakeService.addLake({ ...value, name, id: this.lakeService.nextId() });
+    this.lakeService.addLake({ ...value, name, id: this.lakeService.newId() });
     this.savedMessage.set(`${name} was added.`);
     this.resetForm();
   }

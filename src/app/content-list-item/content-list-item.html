@@ -4,7 +4,7 @@
     <h3>{{ lake().name }}</h3>
   </header>
 
-  <p>Water Temperature: {{ lake().waterTemperature }}</p>
+  <p>Air Temperature: {{ lake().airTemperature }} °C</p>
   <p>Wind Speed: {{ lake().windSpeed }}</p>
   @if (lake().activities?.length) {
     <p>Activities: {{ lake().activities?.join(', ') }}</p>

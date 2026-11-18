@@ -19,16 +19,16 @@
   }
 
   <label>
-    Water temperature (°C)
-    <input type="number" formControlName="waterTemperature" />
+    Air temperature (°C)
+    <input type="number" formControlName="airTemperature" />
   </label>
-  @if (c.waterTemperature.touched) {
-    @if (c.waterTemperature.hasError('required')) {
-      <p class="error">Water temperature is required.</p>
-    } @else if (c.waterTemperature.hasError('min')) {
-      <p class="error">Water temperature can't be below 0 °C.</p>
-    } @else if (c.waterTemperature.hasError('max')) {
-      <p class="error">Water temperature can't be above 40 °C.</p>
+  @if (c.airTemperature.touched) {
+    @if (c.airTemperature.hasError('required')) {
+      <p class="error">Air temperature is required.</p>
+    } @else if (c.airTemperature.hasError('min')) {
+      <p class="error">Air temperature can't be below -50 °C.</p>
+    } @else if (c.airTemperature.hasError('max')) {
+      <p class="error">Air temperature can't be above 50 °C.</p>
     }
   }
 

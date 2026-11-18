@@ -10,36 +10,36 @@ export class LakeService {
   // Private signal holding the lake data
   private lakeData = signal<Lake[]>([
     {
-      id: 1,
+      id: 'lake-huron',
       name: 'Lake Huron',
-      waterTemperature: 16,
+      airTemperature: 16,
       waveHeight: 0.8,
       windSpeed: 20,
       waterQuality: 500,
       activities: ['Swimming', 'Sailing'],
     },
     {
-      id: 2,
+      id: 'lake-erie',
       name: 'Lake Erie',
-      waterTemperature: 20,
+      airTemperature: 20,
       waveHeight: 0.3,
       windSpeed: 10,
       waterQuality: 500,
       activities: ['Fishing'],
     },
     {
-      id: 3,
+      id: 'lake-ontario',
       name: 'Lake Ontario',
-      waterTemperature: 18,
+      airTemperature: 18,
       waveHeight: 0.5,
       windSpeed: 15,
       waterQuality: 250,
       activities: ['Kayaking', 'Fishing'],
     },
     {
-      id: 4,
+      id: 'lake-simcoe',
       name: 'Lake Simcoe',
-      waterTemperature: 17,
+      airTemperature: 17,
       waveHeight: null,
       windSpeed: 12,
       waterQuality: 320,
@@ -69,7 +69,7 @@ export class LakeService {
   }
 
   // Find one lake by its id
-  getLakeById(id: number): Lake | undefined {
+  getLakeById(id: string): Lake | undefined {
     return this.lakes().find((lake) => lake.id === id);
   }
 
@@ -78,9 +78,9 @@ export class LakeService {
     this.lakeData.update((list) => list.map((lake) => (lake.id === updated.id ? updated : lake)));
   }
 
-  // Next free id: one more than the highest id in the list
-  nextId(): number {
-    return Math.max(0, ...this.lakes().map((lake) => lake.id)) + 1;
+  // Random UUID for lakes added in the app, so they can never clash with API ids
+  newId(): string {
+    return crypto.randomUUID();
   }
 
   // Remove a lake immutably

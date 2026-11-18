@@ -4,12 +4,15 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { routes } from './app.routes';
 import { APP_CONFIG } from './shared/app-config';
 import { cacheInterceptor } from './interceptors/cache-interceptor';
+import { loadingInterceptor } from './interceptors/loading-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes, withComponentInputBinding()),
-    provideHttpClient(withInterceptors([cacheInterceptor])),
+    // Cache first: a cache hit returns before the loading interceptor runs, so the
+    // indicator only shows for requests that really go to the network.
+    provideHttpClient(withInterceptors([cacheInterceptor, loadingInterceptor])),
     {
       provide: APP_CONFIG,
       useValue: {
